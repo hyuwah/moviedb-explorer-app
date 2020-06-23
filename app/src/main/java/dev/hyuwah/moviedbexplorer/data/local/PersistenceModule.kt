@@ -1,8 +1,7 @@
-package dev.hyuwah.moviedbexplorer.data.di
+package dev.hyuwah.moviedbexplorer.data.local
 
 import androidx.room.Room
-import dev.hyuwah.moviedbexplorer.data.di.PersistenceConstant.DB_NAME
-import dev.hyuwah.moviedbexplorer.data.local.AppDatabase
+import dev.hyuwah.moviedbexplorer.data.local.PersistenceConstant.DB_NAME
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

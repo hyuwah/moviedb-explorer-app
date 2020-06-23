@@ -1,11 +1,11 @@
-package dev.hyuwah.moviedbexplorer.data.di
+package dev.hyuwah.moviedbexplorer.data.remote
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dev.hyuwah.moviedbexplorer.BuildConfig
-import dev.hyuwah.moviedbexplorer.data.di.NetworkConstant.BASE_URL
-import dev.hyuwah.moviedbexplorer.data.di.NetworkConstant.ChuckerInterceptor
-import dev.hyuwah.moviedbexplorer.data.di.NetworkConstant.LogInterceptor
-import dev.hyuwah.moviedbexplorer.data.remote.MovieServiceApi
+import dev.hyuwah.moviedbexplorer.data.remote.NetworkConstant.BASE_URL
+import dev.hyuwah.moviedbexplorer.data.remote.NetworkConstant.ChuckerInterceptor
+import dev.hyuwah.moviedbexplorer.data.remote.NetworkConstant.LogInterceptor
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -18,13 +18,23 @@ object NetworkConstant {
     const val BASE_URL = "https://api.themoviedb.org/3/"
     val ChuckerInterceptor = named("chuckerInterceptor")
     val LogInterceptor = named("logInterceptor")
+
+    const val IMG_BASE_URL = "https://image.tmdb.org/t/p/"
+    const val DEFAULT_BACKDROP_URL =
+        "http://placehold.jp/36/cccccc/aaaaaa/480x270.png?text=Awesome%20Poster%20Here"
+    const val DEFAULT_POSTER_URL =
+        "http://placehold.jp/48/cccccc/aaaaaa/320x480.png?text=Awesome%20Poster%20Here"
 }
 
 val networkModule = module {
 
     // Interceptors
-    single(ChuckerInterceptor) { ChuckerInterceptor(androidContext()) }
-    single(LogInterceptor) { HttpLoggingInterceptor() }
+    single<Interceptor>(ChuckerInterceptor) { ChuckerInterceptor(androidContext()) }
+    single<Interceptor>(LogInterceptor) {
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+    }
 
     // OkHttpClients
     single {

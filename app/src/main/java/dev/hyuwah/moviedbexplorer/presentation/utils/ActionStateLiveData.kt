@@ -3,22 +3,24 @@ package dev.hyuwah.moviedbexplorer.presentation.utils
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
+import dev.hyuwah.moviedbexplorer.presentation.shared.mapper.Mapper
+import kotlinx.coroutines.CoroutineScope
 import retrofit2.Response
-import kotlin.coroutines.CoroutineContext
 
 /**
  * Taken from
  * https://android.jlelse.eu/architecture-components-easy-mapping-of-actions-and-ui-state-207663e3fdd
  */
-class ActionStateLiveData<T>(
-    private val coroutineContext: CoroutineContext,
-    fetchData: (suspend () -> Response<T>)
+class ActionStateLiveData<IN : Any, OUT : Any>(
+    private val coroutineScope: CoroutineScope,
+    private val mapper: Mapper<IN, OUT>,
+    fetchData: (suspend () -> Response<IN>)
 ) {
     private val action = MutableLiveData<Action>()
-    private var data: T? = null // backing data
+    private var data: OUT? = null // backing data
 
     val state = action.switchMap {
-        liveData(context = coroutineContext) {
+        liveData(context = coroutineScope.coroutineContext) {
             when (action.value) {
                 Action.Load -> {
                     emit(UIState.Loading)
@@ -38,8 +40,8 @@ class ActionStateLiveData<T>(
                 val body = response.body()
                 when {
                     response.isSuccessful && body != null -> {
-                        data = body
-                        emit(UIState.Success(body))
+                        data = mapper.map(body)
+                        emit(UIState.Success(data))
                     }
                     action.value == Action.Refresh -> {
                         emit(UIState.RefreshFailure(Exception()))
@@ -53,10 +55,9 @@ class ActionStateLiveData<T>(
                     emit(UIState.RefreshFailure(Exception()))
                     data?.let {
                         // emit success with existing data
-                        emit(UIState.Success<T>(it))
+                        emit(UIState.Success<OUT>(it))
                     }
-                }
-                else {
+                } else {
                     emit(UIState.Failure(Exception()))
                 }
             }

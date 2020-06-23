@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.RoundedCornersTransformation
-import dev.hyuwah.moviedbexplorer.R
 import dev.hyuwah.moviedbexplorer.databinding.ListItemMovieHorizontalBinding
 import dev.hyuwah.moviedbexplorer.presentation.home.adapter.MovieHorizontalAdapter.ViewHolder
 import dev.hyuwah.moviedbexplorer.presentation.shared.MovieItemClick
@@ -35,13 +34,14 @@ class MovieHorizontalAdapter(
 
         fun bind(item: MovieItemModel, onItemClick: MovieItemClick) = with(binding) {
             root.setOnClickListener { onItemClick(item) }
-            ivPoster.load(R.drawable.placeholder_poster_portrait) {
+            ivPoster.load(item.posterPath) {
                 crossfade(true)
-                placeholder(R.drawable.placeholder_poster_portrait)
-                transformations(RoundedCornersTransformation(16f))
+                transformations(RoundedCornersTransformation(16f, 16f, 0f, 0f))
             }
-            tvTitle.text = "Title ${item.id}"
-            tvReleaseDate.text = "Release Date ${item.id}"
+            tvTitle.text = item.title
+            tvReleaseDate.text = "Release Date ${item.releaseDate}"
+            tvRating.text = item.voteAverage.toString()
+            tvVoteCount.text = "(${item.voteCount} votes)"
         }
     }
 

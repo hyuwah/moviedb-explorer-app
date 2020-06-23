@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.RoundedCornersTransformation
-import dev.hyuwah.moviedbexplorer.R
 import dev.hyuwah.moviedbexplorer.databinding.ListItemBigBannerBinding
 import dev.hyuwah.moviedbexplorer.presentation.home.adapter.BigBannerAdapter.ViewHolder
 import dev.hyuwah.moviedbexplorer.presentation.shared.MovieItemClick
@@ -35,11 +34,12 @@ class BigBannerAdapter(
 
         fun bind(item: MovieItemModel, onItemClick: MovieItemClick) = with(binding) {
             root.setOnClickListener { onItemClick(item) }
-            ivBanner.load(R.drawable.placeholder_poster_landscape) {
+            ivBanner.load(item.backdropPath) {
                 crossfade(true)
-                placeholder(R.drawable.placeholder_poster_landscape)
                 transformations(RoundedCornersTransformation(16f))
             }
+            tvTitle.text = item.title
+            tvRating.text = item.voteAverage.toString()
         }
     }
 

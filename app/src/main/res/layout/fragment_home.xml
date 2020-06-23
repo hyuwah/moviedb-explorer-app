@@ -23,6 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/grey_200"
             android:orientation="vertical">
 
             <TextView
@@ -40,6 +41,17 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/list_item_big_banner" />
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_popular"
+                app:shimmer_auto_start="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <include layout="@layout/shimmer_list_big_banner" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
             <TextView
                 style="@style/Home.Text.SectionTitle"
                 android:layout_width="match_parent"
@@ -54,6 +66,17 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/list_item_movie_horizontal" />
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_top_rated"
+                app:shimmer_auto_start="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <include layout="@layout/shimmer_list_movie_horizontal" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
             <TextView
                 style="@style/Home.Text.SectionTitle"
                 android:layout_width="match_parent"
@@ -67,6 +90,17 @@
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/list_item_movie_horizontal" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_now_playing"
+                app:shimmer_auto_start="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <include layout="@layout/shimmer_list_movie_horizontal" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
         </LinearLayout>
 

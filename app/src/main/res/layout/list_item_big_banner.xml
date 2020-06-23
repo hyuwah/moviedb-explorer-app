@@ -1,20 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="256dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="272dp"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
+    android:layout_marginHorizontal="4dp"
     android:layout_marginTop="4dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:foreground="?selectableItemBackground">
 
     <ImageView
         android:id="@+id/iv_banner"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/placeholder_poster_landscape"
         app:layout_constraintDimensionRatio="16:9"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/overlay_black_bottom"
+        app:layout_constraintBottom_toBottomOf="@id/iv_banner"
+        app:layout_constraintEnd_toEndOf="@id/iv_banner"
+        app:layout_constraintStart_toStartOf="@id/iv_banner"
+        app:layout_constraintTop_toTopOf="@id/iv_banner" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-condensed-medium"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_launcher_background"
-        android:scaleType="centerCrop" />
+        app:layout_constraintHorizontal_bias="0"
+        tools:text="Movie Title" />
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="10.0"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="8dp"
+        android:textColor="@color/cyan_800_dark"
+        android:background="@drawable/bg_banner_rating"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
