@@ -1,7 +1,8 @@
-package dev.hyuwah.moviedbexplorer
+package dev.hyuwah.moviedbexplorer.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dev.hyuwah.moviedbexplorer.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
