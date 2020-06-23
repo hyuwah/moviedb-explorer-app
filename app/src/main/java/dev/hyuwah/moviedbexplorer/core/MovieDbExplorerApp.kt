@@ -2,6 +2,7 @@ package dev.hyuwah.moviedbexplorer.core
 
 import android.app.Application
 import dev.hyuwah.moviedbexplorer.data.di.networkModule
+import dev.hyuwah.moviedbexplorer.data.di.persistenceModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -12,7 +13,8 @@ class MovieDbExplorerApp: Application() {
         startKoin {
             androidContext(this@MovieDbExplorerApp)
             modules(
-                networkModule
+                networkModule,
+                persistenceModule
             )
         }
     }

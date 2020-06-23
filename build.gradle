@@ -9,6 +9,7 @@ buildscript {
         chucker_version = '3.2.0'
         okhttp_version = '3.14.4'
         nav_version = '2.3.0-rc01'
+        koin_version = '2.1.5'
         room_version = "2.2.5"
     }
     repositories {
