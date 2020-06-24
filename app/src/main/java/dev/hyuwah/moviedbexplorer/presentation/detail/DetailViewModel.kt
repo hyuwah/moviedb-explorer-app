@@ -5,7 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.hyuwah.moviedbexplorer.data.repository.MovieDbRepository
-import dev.hyuwah.moviedbexplorer.presentation.shared.mapper.FavoriteItemMapper
+import dev.hyuwah.moviedbexplorer.presentation.detail.mapper.FavoriteItemMapper
+import dev.hyuwah.moviedbexplorer.presentation.detail.mapper.ReviewListMapper
 import dev.hyuwah.moviedbexplorer.presentation.shared.model.MovieItemModel
 import dev.hyuwah.moviedbexplorer.presentation.utils.ActionStateLiveData
 import dev.hyuwah.moviedbexplorer.presentation.utils.LiveEvent

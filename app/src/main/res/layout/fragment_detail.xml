@@ -14,6 +14,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
+            app:maxLines="2"
+            app:expandedTitleTextAppearance="@style/Detail.ToolbarTitle.Expanded"
+            app:expandedTitleMarginBottom="24dp"
+            app:expandedTitleMarginEnd="24dp"
+            app:expandedTitleMarginStart="24dp"
             app:contentScrim="@color/colorPrimaryTransparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -128,7 +133,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:maxLines="10"
                 android:textColor="@android:color/black"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/layout_image_poster"
                 app:layout_constraintTop_toBottomOf="@id/tv_detail_release_date"

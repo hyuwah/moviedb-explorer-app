@@ -1,9 +1,11 @@
-package dev.hyuwah.moviedbexplorer.presentation.shared.mapper
+package dev.hyuwah.moviedbexplorer.presentation.detail.mapper
 
 import dev.hyuwah.moviedbexplorer.data.local.entity.FavoriteMovie
+import dev.hyuwah.moviedbexplorer.presentation.shared.mapper.Mapper
 import dev.hyuwah.moviedbexplorer.presentation.shared.model.MovieItemModel
 
-class FavoriteItemMapper : Mapper<MovieItemModel, FavoriteMovie> {
+class FavoriteItemMapper :
+    Mapper<MovieItemModel, FavoriteMovie> {
 
     override fun map(dataIn: MovieItemModel): FavoriteMovie {
         return FavoriteMovie(

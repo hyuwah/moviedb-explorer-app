@@ -39,7 +39,7 @@ class MovieHorizontalAdapter(
                 transformations(RoundedCornersTransformation(16f, 16f, 0f, 0f))
             }
             tvTitle.text = item.title
-            tvReleaseDate.text = "Release Date ${item.releaseDate}"
+            tvReleaseDate.text = "Release Date\n${item.releaseDate}"
             tvRating.text = item.voteAverage.toString()
             tvVoteCount.text = "(${item.voteCount} votes)"
         }

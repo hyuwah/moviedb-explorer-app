@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.hyuwah.moviedbexplorer.databinding.ListItemReviewBinding
+import io.noties.markwon.Markwon
 
 class ReviewAdapter :
     ListAdapter<ReviewItemModel, ReviewAdapter.ViewHolder>(ReviewItemModel.DiffCallback) {
@@ -25,8 +26,9 @@ class ReviewAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ReviewItemModel) = with(binding) {
+            val markwon = Markwon.create(root.context)
             tvAuthor.text = item.author
-            tvContent.text = item.content
+            markwon.setMarkdown(tvContent, item.content)
         }
 
     }

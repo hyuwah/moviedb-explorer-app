@@ -3,7 +3,6 @@ package dev.hyuwah.moviedbexplorer.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.hyuwah.moviedbexplorer.data.repository.MovieDbRepository
-import dev.hyuwah.moviedbexplorer.presentation.shared.mapper.MovieListMapper
 import dev.hyuwah.moviedbexplorer.presentation.utils.ActionStateLiveData
 
 class HomeViewModel(

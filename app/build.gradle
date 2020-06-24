@@ -96,6 +96,8 @@ dependencies {
 
     implementation "io.coil-kt:coil:0.10.1"
 
+    implementation "io.noties.markwon:core:4.4.0"
+
     // Chucker
     debugImplementation "com.github.ChuckerTeam.Chucker:library:$chucker_version"
     releaseImplementation "com.github.ChuckerTeam.Chucker:library-no-op:$chucker_version"
