@@ -2,6 +2,7 @@ package dev.hyuwah.moviedbexplorer.presentation.detail
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -10,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import coil.api.load
+import com.google.android.material.snackbar.Snackbar
 import dev.hyuwah.moviedbexplorer.R
 import dev.hyuwah.moviedbexplorer.databinding.FragmentDetailBinding
 import dev.hyuwah.moviedbexplorer.presentation.shared.model.MovieItemModel
@@ -29,7 +31,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         setupUI(detailArgs.movieItem)
         setupRecyclerView()
         setupObserver()
-        viewModel.load(detailArgs.movieItem.id)
+        setupListener()
+        viewModel.init(detailArgs.movieItem)
     }
 
     private fun setupUI(movieItem: MovieItemModel) {
@@ -80,6 +83,50 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 }
             }
         }
+        viewModel.isFavorite.observe(viewLifecycleOwner) {
+            binding.bottomBar.menu
+                .findItem(R.id.action_detail_favorite)
+                .setIcon(
+                    if (it) {
+                        R.drawable.ic_favorite
+                    } else {
+                        R.drawable.ic_favorite_border
+                    }
+                )
+        }
+        viewModel.snackbar.observe(viewLifecycleOwner) {
+            Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).apply {
+                setAnchorView(R.id.bottom_bar)
+                show()
+            }
+        }
+    }
+
+    private fun setupListener() {
+        binding.bottomBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_detail_favorite -> {
+                    viewModel.onFavoriteClick()
+                    true
+                }
+                R.id.action_detail_share -> {
+                    shareMovie()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun shareMovie() {
+        val message = with(detailArgs.movieItem) {
+            "Checkout this movie called \'$title\'"
+        }
+        ShareCompat.IntentBuilder.from(requireActivity())
+            .setType("text/plain")
+            .setChooserTitle("Share Movie")
+            .setText(message)
+            .startChooser()
     }
 
     private fun showLoading() {

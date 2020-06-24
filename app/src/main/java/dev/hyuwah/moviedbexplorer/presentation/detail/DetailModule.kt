@@ -1,9 +1,11 @@
 package dev.hyuwah.moviedbexplorer.presentation.detail
 
+import dev.hyuwah.moviedbexplorer.presentation.shared.mapper.FavoriteItemMapper
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val detailModule = module {
     single { ReviewListMapper() }
-    viewModel { DetailViewModel(get(), get()) }
+    single { FavoriteItemMapper() }
+    viewModel { DetailViewModel(get(), get(), get()) }
 }

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="4dp"
+    android:background="@drawable/bg_card_rounded_border_flat"
+    android:foreground="?selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/iv_poster"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/placeholder_poster_portrait"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="3:4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_poster"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Movie Title" />
+
+    <TextView
+        android:id="@+id/tv_release_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textColor="@color/black_transparent"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_poster"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        tools:text="Release Date, 10 Jan 2001" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-condensed"
+        android:maxLines="6"
+        android:ellipsize="end"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_poster"
+        app:layout_constraintTop_toBottomOf="@id/tv_release_date"
+        tools:text="@tools:sample/lorem/random" />
+
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="8dp"
+        android:text="10.0"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_poster"
+        app:layout_constraintTop_toBottomOf="@id/tv_desc"
+        app:layout_constraintVertical_bias="1" />
+
+    <TextView
+        android:id="@+id/tv_vote_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="12dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="(10k votes)"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_rating"
+        app:layout_constraintStart_toEndOf="@id/tv_rating"
+        app:layout_constraintTop_toTopOf="@id/tv_rating" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

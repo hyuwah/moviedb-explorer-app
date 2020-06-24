@@ -12,5 +12,5 @@ object PersistenceConstant {
 val persistenceModule = module {
 
     single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, DB_NAME).build() }
-
+    single { get<AppDatabase>().favoriteMovieDao() }
 }

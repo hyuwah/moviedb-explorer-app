@@ -54,8 +54,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
     override fun onMenuItemClick(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home_favorite -> {
-                // TODO Navigate to Favorite List screen
-                toast("Navigate to favorite movie screen")
+                navController.navigate(
+                    HomeFragmentDirections.actionHomeFragmentToFavoritesFragment()
+                )
                 true
             }
             else -> super.onOptionsItemSelected(item)
