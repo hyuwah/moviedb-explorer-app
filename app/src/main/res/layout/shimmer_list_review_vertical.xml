@@ -2,29 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:paddingHorizontal="12dp"
     android:paddingVertical="8dp"
-    android:paddingStart="12dp">
+    android:orientation="vertical">
 
     <View
-        android:layout_width="132dp"
-        android:layout_height="280dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_marginHorizontal="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginVertical="4dp"
         android:background="@drawable/bg_shimmer_rounded_rectangle" />
 
     <View
-        android:layout_width="132dp"
-        android:layout_height="280dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_marginHorizontal="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginVertical="4dp"
         android:background="@drawable/bg_shimmer_rounded_rectangle" />
 
     <View
-        android:layout_width="132dp"
-        android:layout_height="280dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_marginHorizontal="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginVertical="4dp"
         android:background="@drawable/bg_shimmer_rounded_rectangle" />
 
 </LinearLayout>

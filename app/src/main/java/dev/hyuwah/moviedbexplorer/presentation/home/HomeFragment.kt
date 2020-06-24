@@ -156,8 +156,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
     }
 
     private fun onMovieItemClicked(movie: MovieItemModel) {
-        // Navigate To Detail
-
+        navController.navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie))
     }
 
 }

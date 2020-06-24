@@ -1,7 +1,10 @@
 package dev.hyuwah.moviedbexplorer.presentation.shared.model
 
+import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MovieItemModel(
     var id: Int,
     var title: String,
@@ -12,8 +15,7 @@ data class MovieItemModel(
     var popularity: Double,
     var voteAverage: Double,
     var voteCount: Int
-
-) {
+) : Parcelable {
     companion object {
         val DiffCallback = object : DiffUtil.ItemCallback<MovieItemModel>() {
             override fun areItemsTheSame(

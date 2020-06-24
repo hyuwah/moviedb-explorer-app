@@ -9,14 +9,14 @@
     <View
         android:layout_width="272dp"
         android:layout_height="150dp"
-        android:background="#cacaca"
+        android:background="@drawable/bg_shimmer_rounded_rectangle"
         android:layout_marginHorizontal="4dp"
         android:layout_marginTop="4dp" />
 
     <View
         android:layout_width="272dp"
         android:layout_height="150dp"
-        android:background="#cacaca"
+        android:background="@drawable/bg_shimmer_rounded_rectangle"
         android:layout_marginHorizontal="4dp"
         android:layout_marginTop="4dp" />
 

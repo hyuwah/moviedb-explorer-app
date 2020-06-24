@@ -11,5 +11,5 @@ fun View.setGone() {
 }
 
 fun View.setVisibleIf(predicate: Boolean) {
-    visibility = if(predicate) View.VISIBLE else View.GONE
+    visibility = if (predicate) View.VISIBLE else View.GONE
 }
