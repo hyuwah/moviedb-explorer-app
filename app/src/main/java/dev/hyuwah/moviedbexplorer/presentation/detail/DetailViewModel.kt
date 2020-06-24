@@ -8,6 +8,9 @@ import dev.hyuwah.moviedbexplorer.data.repository.MovieDbRepository
 import dev.hyuwah.moviedbexplorer.presentation.shared.mapper.FavoriteItemMapper
 import dev.hyuwah.moviedbexplorer.presentation.shared.model.MovieItemModel
 import dev.hyuwah.moviedbexplorer.presentation.utils.ActionStateLiveData
+import dev.hyuwah.moviedbexplorer.presentation.utils.LiveEvent
+import dev.hyuwah.moviedbexplorer.presentation.utils.MutableLiveEvent
+import dev.hyuwah.moviedbexplorer.presentation.utils.postEvent
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -22,8 +25,8 @@ class DetailViewModel(
     private val _isFavorite = MutableLiveData(false)
     val isFavorite = _isFavorite as LiveData<Boolean>
 
-    private val _snackbar = MutableLiveData<String>()
-    val snackbar = _snackbar as LiveData<String>
+    private val _snackbar = MutableLiveEvent<String>()
+    val snackbar = _snackbar as LiveEvent<String>
 
     val reviews = ActionStateLiveData(viewModelScope, reviewListMapper) {
         repo.getMovieReviews(movieItem.id.toString())
@@ -57,14 +60,14 @@ class DetailViewModel(
     private fun addToFavorite() {
         viewModelScope.launch {
             repo.addFavoriteMovie(favoriteItemMapper.map(movieItem))
-            _snackbar.postValue("Added to favorite")
+            _snackbar.postEvent("Added to favorite")
         }
     }
 
     private fun removeFromFavorite() {
         viewModelScope.launch {
             repo.removeFavoriteMovie(favoriteItemMapper.map(movieItem))
-            _snackbar.postValue("Removed from favorite")
+            _snackbar.postEvent("Removed from favorite")
         }
     }
 }

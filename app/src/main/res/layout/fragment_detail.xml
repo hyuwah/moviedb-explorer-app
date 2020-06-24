@@ -125,7 +125,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"
                 android:ellipsize="end"
-                android:fontFamily="sans-serif-condensed-light"
+                android:fontFamily="sans-serif-condensed"
                 android:maxLines="10"
                 android:textColor="@android:color/black"
                 android:textSize="11sp"
@@ -154,22 +154,24 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_reviews"
                 android:layout_width="match_parent"
-                android:layout_height="272dp"
+                android:layout_height="0dp"
                 android:clipToPadding="false"
                 android:overScrollMode="never"
                 android:paddingBottom="?actionBarSize"
                 android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/sep_review_title"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:listitem="@layout/list_item_review"
                 tools:visibility="visible" />
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmer_review"
                 android:layout_width="match_parent"
-                android:layout_height="272dp"
+                android:layout_height="0dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/sep_review_title"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:shimmer_auto_start="true"
                 tools:visibility="gone">
 

@@ -94,7 +94,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     }
                 )
         }
-        viewModel.snackbar.observe(viewLifecycleOwner) {
+        viewModel.snackbar.observeEvent(viewLifecycleOwner) {
             Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).apply {
                 setAnchorView(R.id.bottom_bar)
                 show()
