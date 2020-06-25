@@ -3,6 +3,7 @@ package dev.hyuwah.moviedbexplorer.presentation.detail
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ShareCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -53,6 +54,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             tvDetailRating.text = movieItem.voteAverage.toString()
             tvDetailReleaseDate.text = movieItem.releaseDate
             tvDetailVoteCount.text = "${movieItem.voteCount} votes"
+            tvDetailDesc.apply {
+                addShowMoreText("[More]")
+                addShowLessText("[Less]")
+                setShowMoreColor(ContextCompat.getColor(root.context, R.color.colorAccentDark))
+                setShowLessTextColor(ContextCompat.getColor(root.context, R.color.colorAccentDark))
+                setShowingLine(9)
+            }
             tvDetailDesc.text = movieItem.overview
         }
     }
@@ -74,14 +82,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     showLoading()
                 }
                 is UIState.Success -> {
-                    hideLoading()
-                    it.data?.let {
-                        binding.tvReviewTitle.text = "Review (${it.size})"
-                        adapter.submitList(it)
+                    with(binding) {
+                        hideLoading()
+                        rvReviews.setVisible()
+                        it.data?.let {
+                            tvReviewTitle.text = "Review (${it.size})"
+                            adapter.submitList(it)
+                            if (it.isEmpty()) viewEmptyReview.setVisible()
+                        }
                     }
                 }
                 is UIState.Failure -> {
-                    toast(it.exception.message.orIfEmpty("Unknown Error"))
+                    hideLoading()
+                    binding.layoutReviewError.root.setVisible()
                 }
             }
         }
@@ -105,6 +118,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
     private fun setupListener() {
+        binding.layoutReviewError.btnReload.setOnClickListener {
+            viewModel.reviews.load()
+        }
         binding.bottomBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_detail_favorite -> {
@@ -135,12 +151,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         binding.shimmerReview.setVisible()
         binding.shimmerReview.startShimmer()
         binding.rvReviews.setGone()
+        binding.viewEmptyReview.setGone()
+        binding.layoutReviewError.root.setGone()
     }
 
     private fun hideLoading() {
         binding.shimmerReview.setGone()
         binding.shimmerReview.stopShimmer()
-        binding.rvReviews.setVisible()
     }
 
 }

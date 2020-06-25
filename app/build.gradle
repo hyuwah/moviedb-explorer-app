@@ -95,15 +95,17 @@ dependencies {
     // Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
-    implementation "io.coil-kt:coil:0.10.1"
+    implementation "io.coil-kt:coil:0.11.0"
 
     implementation "io.noties.markwon:core:4.4.0"
+    implementation 'com.github.mahimrocky:ShowMoreText:1.0.2'
 
     // Chucker
     debugImplementation "com.github.ChuckerTeam.Chucker:library:$chucker_version"
     releaseImplementation "com.github.ChuckerTeam.Chucker:library-no-op:$chucker_version"
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version"
     testImplementation "io.mockk:mockk:1.10.0"
     testImplementation "androidx.arch.core:core-testing:2.1.0"

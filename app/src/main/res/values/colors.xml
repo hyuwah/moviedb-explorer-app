@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#6200EE</color>
-  <color name="colorPrimaryTransparent">#806200EE</color>
-  <color name="colorPrimaryDark">#3700B3</color>
-  <color name="colorAccent">#00e5ff</color>
+    <color name="colorPrimary">#4e277a</color>
+    <color name="colorPrimaryTransparent">#b84e277a</color>
+    <color name="colorPrimaryDark">#1f004d</color>
+    <color name="colorAccent">#fab800</color>
+    <color name="colorAccentDark">#c28800</color>
 
-  <color name="white">#ffffff</color>
-  <color name="black">#000000</color>
-  <color name="black_transparent">#ca000000</color>
-  <color name="grey_200">#eeeeee</color>
-  <color name="grey_300">#e0e0e0</color>
-  <color name="grey_400">#bdbdbd</color>
-  <color name="cyan_800_dark">#005662</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_transparent">#ca000000</color>
+    <color name="black_toolbar_transparent">#80000000</color>
+    <color name="grey_200">#eeeeee</color>
+    <color name="grey_300">#e0e0e0</color>
+    <color name="grey_400">#bdbdbd</color>
+    <color name="cyan_800_dark">#005662</color>
 </resources>

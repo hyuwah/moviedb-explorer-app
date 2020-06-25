@@ -53,7 +53,7 @@
         android:fontFamily="sans-serif-condensed-medium"
         android:paddingVertical="6dp"
         android:paddingHorizontal="8dp"
-        android:textColor="@color/cyan_800_dark"
+        android:textColor="@color/black_transparent"
         android:background="@drawable/bg_banner_rating"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

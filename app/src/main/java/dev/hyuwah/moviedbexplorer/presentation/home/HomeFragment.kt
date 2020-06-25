@@ -33,6 +33,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
         setupToolbar()
         setupRecyclerView()
         setupObserver()
+        setupListener()
         initData()
     }
 
@@ -74,14 +75,21 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
     private fun handlePopularState(state: UIState<List<MovieItemModel>?>) {
         when (state) {
             UIState.Loading -> {
-                with(binding) { showLoading(shimmerPopular, rvPopular) }
+                with(binding) {
+                    showLoading(shimmerPopular, rvPopular, layoutPopularError.root)
+                }
             }
             is UIState.Success -> {
-                with(binding) { hideLoading(shimmerPopular, rvPopular) }
-                state.data?.let { popularAdapter.submitList(it) }
+                with(binding) {
+                    hideLoading(shimmerPopular, rvPopular)
+                    state.data?.let { popularAdapter.submitList(it) }
+                }
             }
             is UIState.Failure -> {
-                toast(state.exception.message.orIfEmpty("Unknown Error"))
+                with(binding) {
+                    hideLoading(shimmerPopular, rvPopular, false)
+                    layoutPopularError.root.setVisible()
+                }
             }
         }
     }
@@ -89,14 +97,21 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
     private fun handleTopRatedState(state: UIState<List<MovieItemModel>?>) {
         when (state) {
             UIState.Loading -> {
-                with(binding) { showLoading(shimmerTopRated, rvTopRated) }
+                with(binding) {
+                    showLoading(shimmerTopRated, rvTopRated, layoutTopRatedError.root)
+                }
             }
             is UIState.Success -> {
-                with(binding) { hideLoading(shimmerTopRated, rvTopRated) }
-                state.data?.let { topRatedAdapter.submitList(it) }
+                with(binding) {
+                    hideLoading(shimmerTopRated, rvTopRated)
+                    state.data?.let { topRatedAdapter.submitList(it) }
+                }
             }
             is UIState.Failure -> {
-                toast(state.exception.message.orIfEmpty("Unknown Error"))
+                with(binding) {
+                    hideLoading(shimmerTopRated, rvTopRated, false)
+                    layoutTopRatedError.root.setVisible()
+                }
             }
         }
     }
@@ -104,14 +119,35 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
     private fun handleNowPlayingState(state: UIState<List<MovieItemModel>?>) {
         when (state) {
             UIState.Loading -> {
-                with(binding) { showLoading(shimmerNowPlaying, rvNowPlaying) }
+                with(binding) {
+                    showLoading(shimmerNowPlaying, rvNowPlaying, layoutNowPlayingError.root)
+                }
             }
             is UIState.Success -> {
-                with(binding) { hideLoading(shimmerNowPlaying, rvNowPlaying) }
-                state.data?.let { nowPlayingAdapter.submitList(it) }
+                with(binding) {
+                    hideLoading(shimmerNowPlaying, rvNowPlaying)
+                    state.data?.let { nowPlayingAdapter.submitList(it) }
+                }
             }
             is UIState.Failure -> {
-                toast(state.exception.message.orIfEmpty("Unknown Error"))
+                with(binding) {
+                    hideLoading(shimmerNowPlaying, rvNowPlaying, false)
+                    layoutNowPlayingError.root.setVisible()
+                }
+            }
+        }
+    }
+
+    private fun setupListener() {
+        with(binding) {
+            layoutPopularError.btnReload.setOnClickListener {
+                viewModel.popularMovies.load()
+            }
+            layoutTopRatedError.btnReload.setOnClickListener {
+                viewModel.topRatedMovies.load()
+            }
+            layoutNowPlayingError.btnReload.setOnClickListener {
+                viewModel.nowPlayingMovies.load()
             }
         }
     }
@@ -126,16 +162,25 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
         navController.navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie))
     }
 
-    private fun showLoading(shimmerView: ShimmerFrameLayout, recyclerView: RecyclerView) {
+    private fun showLoading(
+        shimmerView: ShimmerFrameLayout,
+        recyclerView: RecyclerView,
+        errorView: View
+    ) {
         shimmerView.setVisible()
         shimmerView.startShimmer()
         recyclerView.setGone()
+        errorView.setGone()
     }
 
-    private fun hideLoading(shimmerView: ShimmerFrameLayout, recyclerView: RecyclerView) {
+    private fun hideLoading(
+        shimmerView: ShimmerFrameLayout,
+        recyclerView: RecyclerView,
+        showRv: Boolean = true
+    ) {
         shimmerView.setGone()
         shimmerView.stopShimmer()
-        recyclerView.setVisible()
+        if (showRv) recyclerView.setVisible()
     }
 
 }

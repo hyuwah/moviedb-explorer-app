@@ -33,24 +33,37 @@
                 android:layout_marginTop="16dp"
                 android:text="Popular Movie" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_popular"
-                style="@style/Home.RecyclerView.Horizontal"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/list_item_big_banner" />
+                android:layout_height="wrap_content">
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer_popular"
-                app:shimmer_auto_start="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:visibility="visible">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_popular"
+                    style="@style/Home.RecyclerView.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/list_item_big_banner" />
 
-                <include layout="@layout/shimmer_list_big_banner" />
-            </com.facebook.shimmer.ShimmerFrameLayout>
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_popular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:shimmer_auto_start="true"
+                    tools:visibility="visible">
+
+                    <include layout="@layout/shimmer_list_big_banner" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <include
+                    android:id="@+id/layout_popular_error"
+                    layout="@layout/layout_connection_problem"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </FrameLayout>
 
             <TextView
                 style="@style/Home.Text.SectionTitle"
@@ -58,24 +71,37 @@
                 android:layout_height="wrap_content"
                 android:text="Top Rated" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_top_rated"
-                style="@style/Home.RecyclerView.Horizontal"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/list_item_movie_horizontal" />
+                android:layout_height="wrap_content">
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer_top_rated"
-                app:shimmer_auto_start="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:visibility="visible">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_top_rated"
+                    style="@style/Home.RecyclerView.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/list_item_movie_horizontal" />
 
-                <include layout="@layout/shimmer_list_movie_horizontal" />
-            </com.facebook.shimmer.ShimmerFrameLayout>
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_top_rated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:shimmer_auto_start="true"
+                    tools:visibility="visible">
+
+                    <include layout="@layout/shimmer_list_movie_horizontal" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <include
+                    android:id="@+id/layout_top_rated_error"
+                    layout="@layout/layout_connection_problem"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </FrameLayout>
 
             <TextView
                 style="@style/Home.Text.SectionTitle"
@@ -83,24 +109,37 @@
                 android:layout_height="wrap_content"
                 android:text="Now Playing" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_now_playing"
-                style="@style/Home.RecyclerView.Horizontal"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/list_item_movie_horizontal" />
+                android:layout_height="wrap_content">
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer_now_playing"
-                app:shimmer_auto_start="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:visibility="visible">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_now_playing"
+                    style="@style/Home.RecyclerView.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/list_item_movie_horizontal" />
 
-                <include layout="@layout/shimmer_list_movie_horizontal" />
-            </com.facebook.shimmer.ShimmerFrameLayout>
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_now_playing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:shimmer_auto_start="true"
+                    tools:visibility="visible">
+
+                    <include layout="@layout/shimmer_list_movie_horizontal" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <include
+                    android:id="@+id/layout_now_playing_error"
+                    layout="@layout/layout_connection_problem"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </FrameLayout>
 
         </LinearLayout>
 
