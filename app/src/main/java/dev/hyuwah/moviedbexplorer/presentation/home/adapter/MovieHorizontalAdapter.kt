@@ -10,6 +10,7 @@ import dev.hyuwah.moviedbexplorer.databinding.ListItemMovieHorizontalBinding
 import dev.hyuwah.moviedbexplorer.presentation.home.adapter.MovieHorizontalAdapter.ViewHolder
 import dev.hyuwah.moviedbexplorer.presentation.shared.MovieItemClick
 import dev.hyuwah.moviedbexplorer.presentation.shared.model.MovieItemModel
+import dev.hyuwah.moviedbexplorer.presentation.utils.NumberFormatter
 
 class MovieHorizontalAdapter(
     private val onItemClick: MovieItemClick
@@ -41,7 +42,8 @@ class MovieHorizontalAdapter(
             tvTitle.text = item.title
             tvReleaseDate.text = "Release Date\n${item.releaseDate}"
             tvRating.text = item.voteAverage.toString()
-            tvVoteCount.text = "(${item.voteCount} votes)"
+            val votes = NumberFormatter.formatSuffix(item.voteCount)
+            tvVoteCount.text = "($votes votes)"
         }
     }
 

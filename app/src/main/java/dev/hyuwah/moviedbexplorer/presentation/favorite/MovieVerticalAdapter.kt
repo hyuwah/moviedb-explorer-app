@@ -9,6 +9,7 @@ import coil.transform.RoundedCornersTransformation
 import dev.hyuwah.moviedbexplorer.databinding.ListItemMovieVerticalBinding
 import dev.hyuwah.moviedbexplorer.presentation.shared.MovieItemClick
 import dev.hyuwah.moviedbexplorer.presentation.shared.model.MovieItemModel
+import dev.hyuwah.moviedbexplorer.presentation.utils.NumberFormatter
 
 class MovieVerticalAdapter(
     private val onItemClick: MovieItemClick
@@ -41,7 +42,8 @@ class MovieVerticalAdapter(
             tvReleaseDate.text = "Release Date ${item.releaseDate}"
             tvDesc.text = item.overview
             tvRating.text = item.voteAverage.toString()
-            tvVoteCount.text = "(${item.voteCount} votes)"
+            val votes = NumberFormatter.formatSuffix(item.voteCount)
+            tvVoteCount.text = "($votes votes)"
         }
     }
 

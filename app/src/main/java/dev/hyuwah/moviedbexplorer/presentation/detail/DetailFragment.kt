@@ -55,8 +55,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             tvDetailReleaseDate.text = movieItem.releaseDate
             tvDetailVoteCount.text = "${movieItem.voteCount} votes"
             tvDetailDesc.apply {
-                addShowMoreText("[More]")
-                addShowLessText("[Less]")
+                addShowMoreText(getString(R.string.label_text_expand))
+                addShowLessText(getString(R.string.label_text_collapse))
                 setShowMoreColor(ContextCompat.getColor(root.context, R.color.colorAccentDark))
                 setShowLessTextColor(ContextCompat.getColor(root.context, R.color.colorAccentDark))
                 setShowingLine(9)
@@ -138,11 +138,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private fun shareMovie() {
         val message = with(detailArgs.movieItem) {
-            "Checkout this movie called \'$title\'"
+            String.format(getString(R.string.share_message), title, voteAverage, releaseDate)
         }
         ShareCompat.IntentBuilder.from(requireActivity())
             .setType("text/plain")
-            .setChooserTitle("Share Movie")
+            .setChooserTitle(getString(R.string.share_title))
             .setText(message)
             .startChooser()
     }

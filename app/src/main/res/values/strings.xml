@@ -1,3 +1,7 @@
 <resources>
-  <string name="app_name">MovieDB Explorer</string>
+    <string name="app_name">MovieDB Explorer</string>
+    <string name="share_message">Checkout this movie called \'%s\'\nRating: %s\nRelease Date: %s</string>
+    <string name="share_title">Share Movie</string>
+    <string name="label_text_expand">[More]</string>
+    <string name="label_text_collapse">[Less]</string>
 </resources>
