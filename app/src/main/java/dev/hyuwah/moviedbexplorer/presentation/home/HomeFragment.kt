@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import dev.hyuwah.moviedbexplorer.R
 import dev.hyuwah.moviedbexplorer.databinding.FragmentHomeBinding
 import dev.hyuwah.moviedbexplorer.presentation.home.adapter.BigBannerAdapter
@@ -72,22 +74,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
     private fun handlePopularState(state: UIState<List<MovieItemModel>?>) {
         when (state) {
             UIState.Loading -> {
-                with(binding) {
-                    shimmerPopular.apply {
-                        setVisible()
-                        startShimmer()
-                    }
-                    rvPopular.setGone()
-                }
+                with(binding) { showLoading(shimmerPopular, rvPopular) }
             }
             is UIState.Success -> {
-                with(binding) {
-                    shimmerPopular.apply {
-                        stopShimmer()
-                        setGone()
-                    }
-                    rvPopular.setVisible()
-                }
+                with(binding) { hideLoading(shimmerPopular, rvPopular) }
                 state.data?.let { popularAdapter.submitList(it) }
             }
             is UIState.Failure -> {
@@ -99,22 +89,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
     private fun handleTopRatedState(state: UIState<List<MovieItemModel>?>) {
         when (state) {
             UIState.Loading -> {
-                with(binding) {
-                    shimmerTopRated.apply {
-                        setVisible()
-                        startShimmer()
-                    }
-                    rvTopRated.setGone()
-                }
+                with(binding) { showLoading(shimmerTopRated, rvTopRated) }
             }
             is UIState.Success -> {
-                with(binding) {
-                    shimmerTopRated.apply {
-                        stopShimmer()
-                        setGone()
-                    }
-                    rvTopRated.setVisible()
-                }
+                with(binding) { hideLoading(shimmerTopRated, rvTopRated) }
                 state.data?.let { topRatedAdapter.submitList(it) }
             }
             is UIState.Failure -> {
@@ -126,22 +104,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
     private fun handleNowPlayingState(state: UIState<List<MovieItemModel>?>) {
         when (state) {
             UIState.Loading -> {
-                with(binding) {
-                    shimmerNowPlaying.apply {
-                        setVisible()
-                        startShimmer()
-                    }
-                    rvNowPlaying.setGone()
-                }
+                with(binding) { showLoading(shimmerNowPlaying, rvNowPlaying) }
             }
             is UIState.Success -> {
-                with(binding) {
-                    shimmerNowPlaying.apply {
-                        stopShimmer()
-                        setGone()
-                    }
-                    rvNowPlaying.setVisible()
-                }
+                with(binding) { hideLoading(shimmerNowPlaying, rvNowPlaying) }
                 state.data?.let { nowPlayingAdapter.submitList(it) }
             }
             is UIState.Failure -> {
@@ -158,6 +124,18 @@ class HomeFragment : Fragment(R.layout.fragment_home), Toolbar.OnMenuItemClickLi
 
     private fun onMovieItemClicked(movie: MovieItemModel) {
         navController.navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie))
+    }
+
+    private fun showLoading(shimmerView: ShimmerFrameLayout, recyclerView: RecyclerView) {
+        shimmerView.setVisible()
+        shimmerView.startShimmer()
+        recyclerView.setGone()
+    }
+
+    private fun hideLoading(shimmerView: ShimmerFrameLayout, recyclerView: RecyclerView) {
+        shimmerView.setGone()
+        shimmerView.stopShimmer()
+        recyclerView.setVisible()
     }
 
 }

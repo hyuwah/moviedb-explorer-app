@@ -33,6 +33,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         setupObserver()
         setupListener()
         viewModel.init(detailArgs.movieItem)
+        viewModel.reviews.load()
+        viewModel.checkIsFavorite()
     }
 
     private fun setupUI(movieItem: MovieItemModel) {

@@ -41,15 +41,15 @@ val networkModule = module {
         OkHttpClient.Builder()
             .addInterceptor {
                 val oldReq = it.request()
-                val newUrl = oldReq.url().newBuilder()
+                val newUrl = oldReq.url.newBuilder()
                     .addQueryParameter("api_key", BuildConfig.API_KEY)
                     .build()
                 val newReq = oldReq.newBuilder().url(newUrl).build()
                 it.proceed(newReq)
             }
-            .addInterceptor(get(ChuckerInterceptor))
+            .addInterceptor(get<Interceptor>(ChuckerInterceptor))
             .apply {
-                if (BuildConfig.DEBUG) addInterceptor(get(LogInterceptor))
+                if (BuildConfig.DEBUG) addInterceptor(get<Interceptor>(LogInterceptor))
             }
             .build()
     }

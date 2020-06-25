@@ -38,8 +38,6 @@ class DetailViewModel(
      */
     fun init(movieItem: MovieItemModel) {
         this.movieItem = movieItem
-        reviews.load()
-        checkIsFavorite()
     }
 
     fun onFavoriteClick() {
@@ -50,7 +48,7 @@ class DetailViewModel(
         }
     }
 
-    private fun checkIsFavorite() {
+    fun checkIsFavorite() {
         viewModelScope.launch {
             repo.getFavoritedMovieById(movieItem.id).collect {
                 _isFavorite.postValue(it != null)
