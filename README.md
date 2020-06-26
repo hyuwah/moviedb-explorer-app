@@ -24,7 +24,7 @@ Another Movie app (part of technical test submission)
 
 #### Basic Flow
 
-![](https://res.cloudinary.com/hyuwah-github-io/image/upload/v1593113733/MovieDB%20Explorer/basic_flow.gif)
+![](https://res.cloudinary.com/hyuwah-github-io/image/upload/v1593141223/MovieDB%20Explorer/basc_flow_optimized.gif)
 
 #### Review (No Internet)
 
